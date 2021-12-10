@@ -4,8 +4,8 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    // 'plugin:react/recommended',
-    "trybe-frontend",
+    'plugin:react/recommended',
+    'trybe-frontend',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -15,8 +15,9 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    'react', 'prettier',
   ],
   rules: {
+    'prettier/prettier': 'error',
   },
 };
