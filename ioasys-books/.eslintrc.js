@@ -3,10 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'trybe-frontend',
-  ],
+  extends: ['trybe-frontend', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -14,10 +11,9 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
   },
-  plugins: [
-    'react', 'prettier',
-  ],
+  plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
+    'react/jsx-curly-spacing': [2, { when: 'never', allowMultiline: false }],
   },
 };
