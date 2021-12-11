@@ -15,5 +15,11 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-curly-spacing': [2, { when: 'never', allowMultiline: false }],
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        assert: 'either', // either check for `htmlFor` or `nesting`
+      },
+    ],
   },
 };
