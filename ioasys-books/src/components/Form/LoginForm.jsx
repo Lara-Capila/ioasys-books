@@ -4,7 +4,7 @@ import { Form } from 'antd';
 
 import { useHistory } from 'react-router-dom';
 import * as Styled from './styles';
-import ButtonSend from '../buttonSend';
+import ButtonSend from '../ButtonSend/Button';
 import Error from '../Error/Error';
 
 export default function LoginForm() {
