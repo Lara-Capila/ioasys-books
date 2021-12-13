@@ -3,10 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    // 'plugin:react/recommended',
-    "trybe-frontend",
-  ],
+  extends: ['trybe-frontend', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -14,9 +11,15 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react', 'prettier'],
   rules: {
+    'prettier/prettier': 'error',
+    'react/jsx-curly-spacing': [2, { when: 'never', allowMultiline: false }],
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        assert: 'either', // either check for `htmlFor` or `nesting`
+      },
+    ],
   },
 };
