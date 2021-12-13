@@ -9,26 +9,25 @@ import Error from '../Error/Error';
 
 export default function LoginForm() {
   const history = useHistory();
-  const [isDisabled, setIsDisabled] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [showAlert, setShowAlert] = React.useState(false);
+
+  const TWO_MILL = 200;
 
   const loginSuccess = () => {
     setTimeout(() => {
       setIsLoading(false);
+      history.push('/dashboard');
       // eslint-disable-next-line no-magic-numbers
-    }, 2000);
-    history.push('/dashboard');
+    }, TWO_MILL);
   };
-
-  console.log(setIsDisabled);
 
   const loginError = () => {
     setTimeout(() => {
       setIsLoading(false);
       setShowAlert(true);
       // eslint-disable-next-line no-magic-numbers
-    }, 2000);
+    }, TWO_MILL);
   };
 
   const onFinish = (values) => {
@@ -80,11 +79,11 @@ export default function LoginForm() {
         >
           <Styled.InputField type="password" placeholder="Senha" />
         </Form.Item>
+        {showAlert && <Error />}
 
         <Form.Item>
-          <ButtonSend disabled={isDisabled} loading={isLoading} />
+          <ButtonSend loading={isLoading} />
         </Form.Item>
-        {showAlert && <Error />}
       </Form>
     </Styled.Container>
   );
