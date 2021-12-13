@@ -1,8 +1,11 @@
-import { Alert } from 'antd';
 import React from 'react';
 
+import Container from './styles';
+
 function Error() {
-  return <Alert type="success" message="deu bom" />;
+  return (
+    <Container type="error" message="Usuário e/ou senha incorretos" showIcon />
+  );
 }
 
 export default Error;
