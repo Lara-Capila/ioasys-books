@@ -11,9 +11,9 @@ export const InputField = styled(Input)`
   box-shadow: none;
   width: 300px;
   height: 45px;
-  background: ${Colors.black32};
+  background-color: ${Colors.black32} !important;
 
-  color: black;
+  color: ${Colors.white};
 
   ::placeholder {
     color: ${Colors.white};
