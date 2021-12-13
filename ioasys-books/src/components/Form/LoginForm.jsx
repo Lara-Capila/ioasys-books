@@ -2,12 +2,46 @@ import React from 'react';
 
 import { Form } from 'antd';
 
+import { useHistory } from 'react-router-dom';
 import * as Styled from './styles';
 import ButtonSend from '../buttonSend';
+import Error from '../Error/Error';
 
 export default function LoginForm() {
+  const history = useHistory();
+  const [isDisabled, setIsDisabled] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [showAlert, setShowAlert] = React.useState(false);
+
+  const loginSuccess = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+      // eslint-disable-next-line no-magic-numbers
+    }, 2000);
+    history.push('/dashboard');
+  };
+
+  console.log(setIsDisabled);
+
+  const loginError = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowAlert(true);
+      // eslint-disable-next-line no-magic-numbers
+    }, 2000);
+  };
+
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    setIsLoading(true);
+    const valoresNoArray = Object.values(values);
+    const validaEmail = valoresNoArray.includes('desafio@ioasys.com.br');
+    const validaSenha = valoresNoArray.includes('12341234');
+
+    console.log('aqui embaixo');
+    // eslint-disable-next-line no-unused-expressions
+    validaSenha === false || validaEmail === false
+      ? loginError()
+      : loginSuccess();
   };
 
   return (
@@ -19,7 +53,7 @@ export default function LoginForm() {
         onFinish={onFinish}
       >
         <Form.Item
-          name="Email"
+          name="email"
           rules={[
             {
               required: true,
@@ -48,8 +82,9 @@ export default function LoginForm() {
         </Form.Item>
 
         <Form.Item>
-          <ButtonSend />
+          <ButtonSend disabled={isDisabled} loading={isLoading} />
         </Form.Item>
+        {showAlert && <Error />}
       </Form>
     </Styled.Container>
   );
