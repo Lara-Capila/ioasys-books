@@ -1,10 +1,23 @@
-import { Button } from 'antd';
 import React from 'react';
+import Proptypes from 'prop-types';
 
-export default function ButtonSend() {
+import ButtonContainer from './styles';
+
+export default function ButtonSend({ disabled, loading }) {
   return (
-    <Button type="primary" htmlType="submit" className="login-form-button">
+    <ButtonContainer
+      type="primary"
+      htmlType="submit"
+      className="login-form-button"
+      disabled={disabled}
+      loading={loading}
+    >
       Entrar
-    </Button>
+    </ButtonContainer>
   );
 }
+
+ButtonSend.propTypes = {
+  disabled: Proptypes.bool.isRequired,
+  loading: Proptypes.bool.isRequired,
+};
