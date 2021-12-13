@@ -1,13 +1,16 @@
 import React from 'react';
 
 import './App.css';
-import LoginPage from './pages/Login/Login';
+import GlobalStyle from './styles/globalStyles';
+
+import Routes from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <LoginPage />
-    </div>
+    <>
+      <Routes />
+      <GlobalStyle />
+    </>
   );
 }
 
