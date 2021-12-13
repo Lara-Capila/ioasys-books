@@ -14,11 +14,9 @@ const ButtonContainer = styled(Button)`
 
   :hover {
     opacity: 0.9;
-  }
-
-  :disabled {
-    cursor: not-allowed;
-    color: #c7c7cc;
+    width: 90px;
+    background-color: ${Colors.white};
+    color: ${Colors.buttonLabelColor};
   }
 `;
 
