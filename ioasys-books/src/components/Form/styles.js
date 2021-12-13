@@ -1,18 +1,24 @@
+import { Input } from 'antd';
 import styled from 'styled-components';
 import { Colors } from '../../globalStyles';
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 4px;
-
-  padding: 0 15px;
-  width: 368px;
-  height: 60px;
-  margin-bottom: 16px;
-
-  background: ${Colors.black32};
+  max-width: 300px;
 `;
 
-export const Input = styled.div``;
+export const InputField = styled(Input)`
+  border: none;
+  box-shadow: none;
+  width: 300px;
+  height: 45px;
+  background: rgba(0, 0, 0, 0.32);
+
+  color: ${Colors.white};
+
+  ::placeholder {
+    color: ${Colors.white};
+    opacity: 0.5;
+    size: 12px;
+    line-height: 16px;
+  }
+`;
