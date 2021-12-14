@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
+import { FiLogOut } from 'react-icons/fi';
 import background from '../../assets/dashboard-backgrond.png';
 import background2 from '../../assets/2dashboard-backgrond.png';
+import Colors from '../../styles/colors';
 
 export const Container = styled.div`
   display: flex;
@@ -50,4 +52,22 @@ export const BooksCard = styled.div`
   @media (min-width: 1600px) {
     width: 1400px;
   }
+`;
+
+export const ContainerUser = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const User = styled.div`
+  color: ${Colors.textBlack};
+`;
+
+export const LogoutIcon = styled(FiLogOut)`
+  color: ${Colors.textBlack};
+  font-size: 20px;
+  margin-left: 15px;
+
+  cursor: pointer;
 `;
