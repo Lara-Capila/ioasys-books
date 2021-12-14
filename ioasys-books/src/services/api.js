@@ -18,7 +18,6 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => {
-    console.log(response, 'responseeeeeee');
     if (response.headers?.authorization) {
       localStorage.setItem('access_token', response.headers.authorization);
     }
