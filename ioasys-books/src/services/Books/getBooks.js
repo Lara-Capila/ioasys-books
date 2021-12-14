@@ -1,15 +1,16 @@
 import api from '../api';
 
-const getBooks = async ({ token, page, amount, category }) => {
+const getBooks = async ({ token, page, amount }) => {
+  console.log(page, amount);
   try {
     return api.get('/books', {
       headers: {
         Authorization: `Baerer ${token}`,
       },
       params: {
-        page,
-        amount,
-        category,
+        page: `${page} || 1`,
+        amount: `${amount} || 10`,
+        category: 'biographies',
       },
     });
   } catch (err) {
