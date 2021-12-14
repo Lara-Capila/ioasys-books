@@ -16,6 +16,7 @@ export default function LoginForm() {
   const TWO_MILL = 2000;
   const HTTP_OK = 200;
 
+  console.log(history);
   const loginSuccess = (values) => {
     const response = authLogin(values);
     response.then((res) => {
