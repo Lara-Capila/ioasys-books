@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import * as Styled from './styles';
 
 function BookCard({ bookList }) {
-  console.log(bookList);
   return (
     <Styled.Container>
       <Styled.BookContainer>
