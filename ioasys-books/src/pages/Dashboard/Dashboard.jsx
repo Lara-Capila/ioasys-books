@@ -7,10 +7,13 @@ import BookCard from '../../components/BookCard/BookCard';
 import getToken from '../../helpers/getToken';
 import getBooks from '../../services/Books/getBooks';
 import getUser from '../../helpers/getUser';
+import ModalBook from '../../components/Modal/ModalBook';
 
 function DashboardPage() {
   const [bookList, setBookList] = React.useState();
   const [userData, setUserData] = React.useState();
+  const [selectedBook, setSelectedBook] = React.useState();
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const history = useHistory();
 
@@ -47,9 +50,25 @@ function DashboardPage() {
     getUserData();
   }, []);
 
-  console.log(userData);
+  const openModal = (id) => {
+    const findSelectedBook = bookList.find((book) => book.id === id);
+    setSelectedBook(findSelectedBook);
+  };
+
+  const handleClickBook = (id) => {
+    openModal(id);
+    setModalVisible(true);
+  };
+
   return (
     <Styled.Container>
+      {modalVisible && (
+        <ModalBook
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          data={selectedBook}
+        />
+      )}
       <Styled.Header>
         <Styled.LogoContainer>
           <Title />
@@ -63,7 +82,11 @@ function DashboardPage() {
       </Styled.Header>
       <Styled.BooksCard>
         {bookList?.map((book) => (
-          <BookCard bookList={book} key={book.id} />
+          <BookCard
+            bookList={book}
+            key={book.id}
+            onClick={() => handleClickBook(book.id)}
+          />
         ))}
       </Styled.BooksCard>
     </Styled.Container>

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import * as Styled from './styles';
 
-function BookCard({ bookList }) {
+function BookCard({ bookList, onClick }) {
   return (
-    <Styled.Container>
+    <Styled.Container onClick={onClick}>
       <Styled.BookContainer>
         <Styled.BookImage imageUrl={bookList.imageUrl} />
         <Styled.BookDetails>
@@ -32,6 +32,7 @@ function BookCard({ bookList }) {
 
 BookCard.propTypes = {
   bookList: PropTypes.objectOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default BookCard;
