@@ -20,6 +20,7 @@ api.interceptors.response.use(
   (response) => {
     if (response.headers?.authorization) {
       localStorage.setItem('access_token', response.headers.authorization);
+      localStorage.setItem('user', JSON.stringify(response.data));
     }
     return response;
   },
