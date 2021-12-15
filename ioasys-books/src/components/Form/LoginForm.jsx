@@ -6,27 +6,30 @@ import { useHistory } from 'react-router-dom';
 import * as Styled from './styles';
 import ButtonSend from '../ButtonSend/Button';
 import Error from '../Error/Error';
+import authLogin from '../../services/Auth/authLogin';
 
 export default function LoginForm() {
   const history = useHistory();
   const [isLoading, setIsLoading] = React.useState(false);
   const [showAlert, setShowAlert] = React.useState(false);
 
-  const TWO_MILL = 200;
+  const TWO_MILL = 2000;
+  const HTTP_OK = 200;
 
-  const loginSuccess = () => {
-    setTimeout(() => {
-      setIsLoading(false);
-      history.push('/dashboard');
-      // eslint-disable-next-line no-magic-numbers
-    }, TWO_MILL);
+  const loginSuccess = (values) => {
+    const response = authLogin(values);
+    response.then((res) => {
+      setTimeout(() => {
+        if (res.status === HTTP_OK) history.push('/dashboard');
+        setIsLoading(false);
+      }, TWO_MILL);
+    });
   };
 
   const loginError = () => {
     setTimeout(() => {
       setIsLoading(false);
       setShowAlert(true);
-      // eslint-disable-next-line no-magic-numbers
     }, TWO_MILL);
   };
 
@@ -35,12 +38,10 @@ export default function LoginForm() {
     const valoresNoArray = Object.values(values);
     const validaEmail = valoresNoArray.includes('desafio@ioasys.com.br');
     const validaSenha = valoresNoArray.includes('12341234');
-
-    console.log('aqui embaixo');
     // eslint-disable-next-line no-unused-expressions
     validaSenha === false || validaEmail === false
       ? loginError()
-      : loginSuccess();
+      : loginSuccess(values);
   };
 
   return (
@@ -66,7 +67,7 @@ export default function LoginForm() {
           <Styled.InputField placeholder="Email" />
         </Form.Item>
         <Form.Item
-          name="senha"
+          name="password"
           rules={[
             {
               required: true,
