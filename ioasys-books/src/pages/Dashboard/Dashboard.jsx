@@ -8,6 +8,7 @@ import getToken from '../../helpers/getToken';
 import getBooks from '../../services/Books/getBooks';
 import getUser from '../../helpers/getUser';
 import ModalBook from '../../components/Modal/ModalBook';
+import Paginacao from '../../components/Pagination/Pagination';
 
 function DashboardPage() {
   const [bookList, setBookList] = React.useState();
@@ -17,13 +18,13 @@ function DashboardPage() {
 
   const history = useHistory();
 
-  const fetchBook = async () => {
+  const fetchBook = async (page) => {
     const token = getToken();
     try {
       const responseBooks = await getBooks({
         token,
-        page: 1,
-        category: 'biographies',
+        amount: 10,
+        page,
       });
       setBookList(responseBooks.data.data);
     } catch (err) {
@@ -46,7 +47,7 @@ function DashboardPage() {
   };
 
   React.useEffect(() => {
-    fetchBook();
+    fetchBook(1);
     getUserData();
   }, []);
 
@@ -75,7 +76,7 @@ function DashboardPage() {
         </Styled.LogoContainer>
         <Styled.ContainerUser>
           <Styled.User>
-            Bem Vindo, <strong>{userData?.name}!</strong>
+            Bem Vind(x), <strong>{userData?.name}!</strong>
           </Styled.User>
           <Styled.LogoutIcon onClick={logoutUser} />
         </Styled.ContainerUser>
@@ -89,6 +90,7 @@ function DashboardPage() {
           />
         ))}
       </Styled.BooksCard>
+      <Paginacao teste={(page) => fetchBook(page)} />
     </Styled.Container>
   );
 }
